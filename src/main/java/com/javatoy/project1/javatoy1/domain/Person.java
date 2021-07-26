@@ -1,8 +1,11 @@
 package com.javatoy.project1.javatoy1.domain;
 
 import lombok.*;
-
 import javax.persistence.*;
+import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity

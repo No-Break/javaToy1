@@ -37,6 +37,7 @@ class PersonRepositoryTest {
 
     @Test
     void hashCodeAndEquals() {
+      
         Person person1 = new Person("martin", 10, "0");
         Person person2 = new Person("martin", 10, "A");
 
