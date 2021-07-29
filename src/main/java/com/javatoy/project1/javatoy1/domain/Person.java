@@ -2,13 +2,10 @@ package com.javatoy.project1.javatoy1.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -26,6 +23,7 @@ public class Person {
 
     private String hobby;
 
+    @NonNull
     private String bloodType;
 
     private String address;
@@ -36,4 +34,8 @@ public class Person {
 
     @ToString.Exclude
     private String phoneNumber;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Block block;
+
 }
