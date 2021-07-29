@@ -1,6 +1,8 @@
 package com.javatoy.project1.javatoy1.domain;
 
+import com.javatoy.project1.javatoy1.domain.dto.Birthday;
 import lombok.*;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -28,7 +30,9 @@ public class Person {
 
     private String address;
 
-    private LocalDate birthday;
+    @Valid
+    @Embedded
+    private Birthday birthday;
 
     private  String job;
 
