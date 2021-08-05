@@ -1,5 +1,6 @@
 package com.javatoy.project1.javatoy1.controller;
 
+
 import com.javatoy.project1.javatoy1.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @Slf4j
 @SpringBootTest
@@ -33,6 +35,13 @@ class PersonControllerTest {
 
     @Test
     void getPerson() throws Exception {
+
+
+    private MockMvc mockMvc;
+
+    @Test
+    void getPerson() throws Exception {
+
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/person/1"))
                 .andDo(print())
@@ -42,6 +51,7 @@ class PersonControllerTest {
 
     @Test
     void postPerson() throws Exception {
+
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/api/person")
                         .contentType(MediaType.APPLICATION_JSON)
