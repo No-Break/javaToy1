@@ -1,5 +1,6 @@
 package com.javatoy.project1.javatoy1.service;
 
+import com.javatoy.project1.javatoy1.controller.dto.PersonDto;
 import com.javatoy.project1.javatoy1.domain.Block;
 import com.javatoy.project1.javatoy1.domain.Person;
 import com.javatoy.project1.javatoy1.repository.BlockRepository;
@@ -40,5 +41,33 @@ public class PersonService {
     @Transactional
     public void put(Person person) {
         personRepository.save(person);
+    }
+
+    @Transactional
+    public void modify(Long id, PersonDto personDto) {
+        Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("아이디가 존재하지 않습니다."));
+
+        person.set(personDto);
+
+        personRepository.save(person);
+    }
+
+    @Transactional
+    public void modify(Long id, String name) {
+        Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("아이디가 존재하지 않습니다"));
+
+        person.setName(name);
+
+        personRepository.save(person);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("아이디가 존재하지 않습니다"));
+
+        person.setDeleted(true);
+
+        personRepository.save(person);
+
     }
 }
