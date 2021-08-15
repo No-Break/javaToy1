@@ -1,10 +1,12 @@
 package com.javatoy.project1.javatoy1.service;
 
+
 import com.javatoy.project1.javatoy1.exception.PersonNotFoundException;
 import com.javatoy.project1.javatoy1.controller.dto.PersonDto;
 import com.javatoy.project1.javatoy1.domain.Person;
 import com.javatoy.project1.javatoy1.domain.dto.Birthday;
 import com.javatoy.project1.javatoy1.exception.RenameNotPermittedException;
+
 import com.javatoy.project1.javatoy1.repository.PersonRepository;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
@@ -74,6 +76,7 @@ class PersonServiceTest {
                 .thenReturn(Optional.empty());
 
         assertThrows(PersonNotFoundException.class, () -> personService.modify(1L, mockPersonDto()));
+
     }
 
     @Test
@@ -101,7 +104,9 @@ class PersonServiceTest {
         when(personRepository.findById(1L))
                 .thenReturn(Optional.empty());
 
+
         assertThrows(PersonNotFoundException.class, () -> personService.modify(1L, "daniel"));
+
     }
 
     @Test
@@ -120,6 +125,7 @@ class PersonServiceTest {
                 .thenReturn(Optional.empty());
 
         assertThrows(PersonNotFoundException.class, () -> personService.delete(1L));
+
     }
 
     @Test
