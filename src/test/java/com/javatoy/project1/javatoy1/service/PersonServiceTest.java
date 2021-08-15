@@ -1,8 +1,12 @@
 package com.javatoy.project1.javatoy1.service;
 
+
+import com.javatoy.project1.javatoy1.exception.PersonNotFoundException;
 import com.javatoy.project1.javatoy1.controller.dto.PersonDto;
 import com.javatoy.project1.javatoy1.domain.Person;
 import com.javatoy.project1.javatoy1.domain.dto.Birthday;
+import com.javatoy.project1.javatoy1.exception.RenameNotPermittedException;
+
 import com.javatoy.project1.javatoy1.repository.PersonRepository;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
@@ -11,8 +15,6 @@ import org.mockito.ArgumentMatcher;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -73,7 +75,8 @@ class PersonServiceTest {
         when(personRepository.findById(1L))
                 .thenReturn(Optional.empty());
 
-        assertThrows(RuntimeException.class, () -> personService.modify(1L, mockPersonDto()));
+        assertThrows(PersonNotFoundException.class, () -> personService.modify(1L, mockPersonDto()));
+
     }
 
     @Test
@@ -81,7 +84,7 @@ class PersonServiceTest {
         when(personRepository.findById(1L))
                 .thenReturn(Optional.of(new Person("tony")));
 
-        assertThrows(RuntimeException.class, () -> personService.modify(1L, mockPersonDto()));
+        assertThrows(RenameNotPermittedException.class, () -> personService.modify(1L, mockPersonDto()));
 
     }
 
@@ -101,7 +104,9 @@ class PersonServiceTest {
         when(personRepository.findById(1L))
                 .thenReturn(Optional.empty());
 
-        assertThrows(RuntimeException.class, () -> personService.modify(1L, "daniel"));
+
+        assertThrows(PersonNotFoundException.class, () -> personService.modify(1L, "daniel"));
+
     }
 
     @Test
@@ -119,7 +124,8 @@ class PersonServiceTest {
         when(personRepository.findById(1L))
                 .thenReturn(Optional.empty());
 
-        assertThrows(RuntimeException.class, () -> personService.delete(1L));
+        assertThrows(PersonNotFoundException.class, () -> personService.delete(1L));
+
     }
 
     @Test
