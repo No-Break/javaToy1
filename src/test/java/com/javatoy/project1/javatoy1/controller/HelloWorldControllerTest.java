@@ -24,8 +24,6 @@ class HelloWorldControllerTest {
 
     private MockMvc mockMvc;
 
-    //커밋 테스트
-
     @BeforeEach
     void beforeEach() {
         mockMvc = MockMvcBuilders
